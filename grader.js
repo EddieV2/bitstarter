@@ -22,10 +22,12 @@ References:
 */
 
 var fs = require('fs');
+var rest = require('restler');
 var program = require('commander');
 var cheerio = require('cheerio');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
+var URLLINK_DEFAULT = "http://mysterious-caverns-3888.herokuapp.com";
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
@@ -35,6 +37,14 @@ var assertFileExists = function(infile) {
     }
     return instr;
 };
+
+// var urlLink = function(res) {
+// 	if (!res.statuscode == 200) {
+// 		console.log("Couldn't connect to URL. Exiting.");
+//		process.exit(1);
+//	}
+//	return instr;
+// };
 
 var cheerioHtmlFile = function(htmlfile) {
     return cheerio.load(fs.readFileSync(htmlfile));
@@ -65,6 +75,7 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
+        .option('-u, --url <check_url>', 'Link to URL', URLLINK_DEFAULT)
         .parse(process.argv);
     var checkJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
