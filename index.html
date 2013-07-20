@@ -26,23 +26,27 @@
 
       @media (max-width: 979px) and (min-width: 768px) { 
         .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-          width: 724px;
-          zoom: 1;
-       }
-       .row-fluid {
-        zoom: 1;
+          width: 700px;
        }
       }
 
       @media (max-width: 767px) {
         .container {
           width: auto;
-          zoom: 1;
+        }
+        .row-fluid {
+          width: 50%;
+        }
+        .actions {
+          max-width: 480px;
+          max-height: 300px;
+          padding-top: 1.125em;
+          padding-bottom: 1.125em;
         }
       }
 
        /*Landscape phones and down*/
-      @media only screen and (max-width: 480px) { 
+      @media (max-width: 480px) { 
        .copy {
          padding: 2.5% 10%;
        }
